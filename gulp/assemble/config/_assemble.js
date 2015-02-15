@@ -4,7 +4,8 @@ var templatesCwd = process.cwd() + config.src;
 var globby = require('globby');
 
 var getGlob = function(fp) {
-  return globby.sync(fp, {cwd: templatesCwd});
+  return [fp];
+  // return globby.sync(fp, {cwd: templatesCwd});
 };
 
 module.exports = {
@@ -18,8 +19,8 @@ module.exports = {
   },
   pages: {
     files: [
-      { 
-        cwd: path.join(process.cwd(), 'app'), 
+      {
+        cwd: path.join(process.cwd(), 'app'),
         src: getGlob('pages/**/*.hbs'),
         dest: config.dest + '/'
       }
