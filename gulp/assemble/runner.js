@@ -18,7 +18,7 @@ module.exports = function(callback) {
 
   var config = require('./config/_assemble'); // old assemble config
   var options = config.options; // global options
-  helpers.register(Handlebars, options);
+  helpers.register(Handlebars, options.helpers);
 
   console.log(config.options);
 

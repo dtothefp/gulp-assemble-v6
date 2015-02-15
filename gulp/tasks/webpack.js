@@ -9,7 +9,7 @@ var config = require('../../webpack-hot-dev-server.config.js');
 
 console.log(path.join(process.cwd(), 'build'));
 
-gulp.task('webpack', function(callback) {
+gulp.task('webpack', ['clean'], function(callback) {
     var compiler = webpack(config);
 
     new WebpackDevServer(compiler, {

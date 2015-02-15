@@ -6,7 +6,7 @@ var reload = require('browser-sync').reload;
 var handleErrors = require('../util/handleErrors');
 var config = require('../config');
 
-gulp.task('sass', function () {
+gulp.task('sass', ['clean'], function () {
   return gulp.src(config.src + '/scss/**/*.scss')
     .pipe(sass({
       errLogToConsole: true
