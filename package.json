@@ -1,0 +1,76 @@
+{
+  "name": "react-hot-boilerplate",
+  "version": "1.0.0",
+  "description": "Boilerplate for ReactJS project with hot code reloading",
+  "scripts": {
+    "start": "node server.js",
+    "build": "webpack --config webpack-production.config.js --progress --profile --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gaearon/react-hot-boilerplate.git"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "boilerplate",
+    "hot",
+    "hot",
+    "reload",
+    "hmr",
+    "live",
+    "edit",
+    "webpack"
+  ],
+  "author": "Dan Abramov <dan.abramov@me.com> (http://github.com/gaearon)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gaearon/react-hot-boilerplate/issues"
+  },
+  "homepage": "https://github.com/gaearon/react-hot-boilerplate",
+  "devDependencies": {
+    "6to5-core": "^3.6.5",
+    "6to5-loader": "^3.0.0",
+    "assemble": "git://github.com/assemble/assemble#v0.6.0",
+    "assemble-push": "^0.1.1",
+    "autoprefixer-loader": "^1.1.0",
+    "browser-sync": "^2.0.1",
+    "css-loader": "^0.9.0",
+    "extend-shallow": "^0.2.0",
+    "extract-text-webpack-plugin": "^0.3.5",
+    "globby": "^1.1.0",
+    "gulp": "^3.8.11",
+    "gulp-autoprefixer": "^2.0.0",
+    "gulp-cached": "^1.0.2",
+    "gulp-changed": "^0.4.1",
+    "gulp-clean": "^0.3.1",
+    "gulp-extname": "^0.2.0",
+    "gulp-jshint": "^1.9.2",
+    "gulp-notify": "^1.4.2",
+    "gulp-sass": "^1.1.0",
+    "gulp-sourcemaps": "^1.2.8",
+    "gulp-util": "^3.0.3",
+    "handlebars": "^3.0.0",
+    "handlebars-helpers": "^0.5.8",
+    "html-loader": "^0.2.2",
+    "js-yaml": "^3.2.6",
+    "jshint-stylish": "^1.0.0",
+    "jsx-loader": "^0.12.2",
+    "jsxhint-loader": "^0.2.0",
+    "layout-stack": "^0.1.1",
+    "minimist": "^1.1.0",
+    "plasma": "^0.6.1",
+    "pretty-hrtime": "~0.2.1",
+    "react-hot-loader": "^1.1.1",
+    "require-dir": "^0.1.0",
+    "sass-loader": "^0.4.0-beta.1",
+    "style-loader": "^0.8.2",
+    "through2": "^0.6.3",
+    "vinyl-source-stream": "~0.1.1",
+    "webpack": "^1.5.1",
+    "webpack-dev-server": "1.6.4"
+  },
+  "dependencies": {
+    "react": "^0.12.0"
+  }
+}
