@@ -20,6 +20,8 @@ module.exports = function(callback) {
   var options = config.options; // global options
   helpers.register(Handlebars, options);
 
+  console.log(config.options);
+
   var renameKey = assemble.option('renameKey');
   var renameKeys = require('./utils/rename-keys')(renameKey);
 

@@ -16,8 +16,6 @@ module.exports = function(defaultKey) {
         noExtPath = fp;
       }
 
-      console.log(noExtPath);
-
       return noExtPath;
     }
   };

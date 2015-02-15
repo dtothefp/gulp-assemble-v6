@@ -26,10 +26,8 @@
       </div>
     </div>
 
-    {{#is this.environment "dev"}}
-      <script src="{{assets}}/js/server.bundle.js" defer></script>
-      <script src="{{assets}}/js/hot.bundle.js" defer></script>
-    {{/is}}
+    {{debug assets}}
+    
     {{#if this.page_script}}
     <script src="{{assets}}/js/{{this.page_script}}" defer></script>
     {{/if}}
