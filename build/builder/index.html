@@ -1,0 +1,32 @@
+<div id="container">
+  <header id='initial_header'>
+    <div id='optly_logo'></div>
+    <h1 id="heading">Saleshuman Demo Builder</h1>
+  </header>
+  <div id="create_complete_alert">
+    <p>Your project called "<span id="proj_name"></span>" has been created.  Please refresh the Home page in your Optimizely account to find the new project.</p></br>
+    <p>Here is a shareable link to your results page.  Drag me to your bookmark bar to save this link as a bookmark: <a id="results_link" target="_blank"></a></p>
+    <button id="remove_alert_btn" type="submit" value="OK">OK</button>
+  </div>
+  <p id="choose">Choose your vertical:</p>
+    <select id="vert_select"> 
+      <option class="radios" value="General">General</option>
+      <option class="radios" value="Media">Media</option>
+      <option class="radios" value="Travel">Travel</option>
+      <option class="radios" value="E-Commerce">E-Commerce</option>
+    </select></br>
+  <div id="input_items">
+    <input class="text_input" id="project_name_input" type="text" placeholder="Project Name"><br/>
+    <input class="text_input" id="url_input" type="text" placeholder="Demo URL (optional)"></br>
+    <input class="text_input" id="api_token" type="text" placeholder="API Token"></br>
+    <button class="lego-button lego-button--highlight" type="submit" value="Create Project">Create Project</button>
+  </div>
+</div>
+
+<div id="credits">
+  <span>
+    <a href="http://www.optimizely.com" target="blank">
+      <img id="optly-logo" src="https://www.google.com/a/optimizely.com/images/logo.gif?alpha=1&service=google_white">
+    </a>
+  </span>
+</div>
