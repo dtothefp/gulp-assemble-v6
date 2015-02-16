@@ -3,16 +3,23 @@ var path = require('path');
 var gutil = require('gulp-util');
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
-var config = require('../../webpack-hot-dev-server.config.js');
+var minimist = require('minimist');
 
-//console.log(config);
+var knownOptions = {
+  string: 'env',
+  default: { env: process.env.NODE_ENV || 'development' }
+};
 
-console.log(path.join(process.cwd(), 'build'));
+var options = minimist(process.argv.slice(2), knownOptions);
+console.log('******ENVIRONMENT*******', options);
 
-gulp.task('webpack', ['clean'], function(callback) {
-    var compiler = webpack(config);
+var runWebpackTask = function(env, callback) {
+  var config;
 
-    new WebpackDevServer(compiler, {
+  if(env === 'development') {
+   config = require('../../webpack-hot-dev-server.config.js');
+
+   return new WebpackDevServer(webpack(config), {
       contentBase: path.join(process.cwd(), 'build'),
       publicPath: config.output.publicPath,
       hot: true
@@ -26,4 +33,20 @@ gulp.task('webpack', ['clean'], function(callback) {
         // keep the server alive or continue?
         callback();
     });
+  } else if (env === 'production') {
+    config = require('../../webpack-production.config.js');
+
+    return webpack(config, function(err, stats) {
+        if(err) throw new gutil.PluginError("webpack", err);
+        gutil.log("[webpack]", stats.toString({
+            // output options
+        }));
+        callback();
+    });
+  }
+  
+};
+
+gulp.task('webpack', ['clean'], function(callback) {
+    runWebpackTask(options.env, callback);
 });

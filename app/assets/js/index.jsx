@@ -1,9 +1,7 @@
-var React = require("react");
+'use strict';
+require('../scss/main'); // jshint ignore:line
 
-var HelloMessage = React.createClass({
-  render: function() {
-    return <div>Hello {this.props.name}</div>;
-  }
-});
+var React = require('react'),
+    App = require('./app');
 
-React.render(<HelloMessage name="John" />, document.querySelector('.container'));
+React.render(<App />, document.querySelector('.container'));

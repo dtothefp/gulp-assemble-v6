@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js" {{#if this.angular_app}}ng-app="{{this.angular_app}}"{{/if}}>
+<html lang="en" class="no-js" >
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{title}} | {{site.title}}</title>
+    <title>Home | </title>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//cdn.optimizely.com/js/2446360483.js"></script>
 
     <!-- Optimizely Stylesheet -->
-    <link rel="stylesheet" href="{{assets}}/main.css">
+    <link rel="stylesheet" href="../assets/main.css">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -21,7 +21,11 @@
     <div id="outer-wrapper">
       <div id="inner-wrapper">
 
-        {% body %}
+        <div class="content">
+  <h1 class="headline">COMING SOON...</h1>
+  <h4 class="description">Demonstrations of Optimizely operating in various environments.</h4>
+  <div class="container"></div>
+</div>
 
       </div>
     </div>
@@ -29,8 +33,5 @@
     
     <script src="/assets/bundle.js"></script>
     
-    {{#if this.page_script}}
-    <script src="{{assets}}/js/{{this.page_script}}" defer></script>
-    {{/if}}
   </body>
 </html>

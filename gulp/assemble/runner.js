@@ -20,8 +20,6 @@ module.exports = function(callback) {
   var options = config.options; // global options
   helpers.register(Handlebars, options.helpers);
 
-  console.log(config.options);
-
   var renameKey = assemble.option('renameKey');
   var renameKeys = require('./utils/rename-keys')(renameKey);
 
@@ -32,6 +30,7 @@ module.exports = function(callback) {
 
   assemble.layouts([options.layouts]);
   assemble.partials(options.partials);
+   assemble.helpers(options.helpers);
 
   function normalizeSrc (cwd, sources) {
     sources = Array.isArray(sources) ? sources : [sources];
