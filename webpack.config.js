@@ -11,7 +11,7 @@ module.exports = function(options) {
   };
 
   var devEntry = [
-    'webpack-dev-server/client?http://localhost:3000',
+    'webpack-dev-server/client?http://localhost:8000',
     'webpack/hot/only-dev-server'
   ];
 
@@ -22,8 +22,6 @@ module.exports = function(options) {
       return list.concat([bundle]);
     }, devEntry);
   }
-
-  console.log('*******ENTRY*******', entry, options);
 
   var preLoaders = {
     'jsx': {
