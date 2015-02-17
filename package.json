@@ -56,6 +56,7 @@
     "jsx-loader": "^0.12.2",
     "jsxhint-loader": "^0.2.0",
     "layout-stack": "^0.1.1",
+    "lodash": "^3.2.0",
     "minimist": "^1.1.0",
     "node-bourbon": "^1.2.3",
     "object-assign": "^2.0.0",

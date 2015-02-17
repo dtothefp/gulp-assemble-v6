@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 module.exports = function computeEventPositions(events) {
   var eventBoard = [];
   var BOARD_HEIGHT = 720;
@@ -7,6 +9,7 @@ module.exports = function computeEventPositions(events) {
     BOARD_HEIGHT -= 1;
   }
 
+  //TODO: how to prevent duplicates??
   events.forEach((event, index) => {
     var start = event.start;
     var end = event.end;
