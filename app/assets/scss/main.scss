@@ -5,14 +5,22 @@
 @import 'flexbox';
 
 .calendar {
+  height: 720px;
   font-family: arial;
   padding: 20px 10px;
   &--events {
+    width: 620px; //using box-sizing: border box; so padding won't effect width
     background: map-get($background-color, light);
-    padding: 10px;
+    padding: 0 10px;
+
+    &__inner {
+      width: 100%;
+      position:relative;
+    }
 
     &__item {
       display: inline-block;
+      position: absolute;
       background: $base-white;
       padding: 5px;
       border-left: 3px solid map-get($ui-color, brand);
@@ -22,7 +30,9 @@
   &--times {
 
     &__item {
-      margin: 30px 10px;
+      height: (720 / 24) + px;
+      position: relative;
+      margin: 0 10px;
       text-align: right;
       color: map-get($font-color, medium);
 
@@ -37,6 +47,8 @@
       &:nth-child(odd) {
         font-weight: map-get($font-weight, bold);
         .calendar--times__time {
+          position: relative;
+          top: -5px;
           font-size: 2em;
         }
       }
@@ -49,6 +61,7 @@
 
     &__period {
       margin-left: 5px;
+      vertical-align: top;
       text-transform: uppercase;
       font-size: 1.2em;
     }

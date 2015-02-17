@@ -18,15 +18,26 @@ var CalendarEvents = React.createClass({
     this.setState(storedEvents());
   },
   render() {
-    var events = this.state.events.map( (event) => {
-      return (<div className="calendar--events__item">
-                <p>Sample Item</p>
-                <p>Sample Location</p>
+    var events = this.state.events.map( (event, index) => {
+      if(event.W !== 100) {
+        event.R = event.R * event.W;
+      }
+      var divStyle = {
+        top: event.start,
+        left: event.R + '%',
+        width: event.W + '%',
+        height: ( event.end - event.start ) + 'px'
+      };
+      return (<div className="calendar--events__item" style={divStyle}>
+                <p>Sample Item - Start: {event.start}</p>
+                <p>Sample Location - End: {event.end}</p>
               </div>
       );
     });
     return (
-      <div className="calendar--events flex-1">{events}</div>
+      <div className="calendar--events flex">
+        <div className="calendar--events__inner">{events}</div>
+      </div>
     );
   }
 });
