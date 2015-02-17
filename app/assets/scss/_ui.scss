@@ -1,0 +1,183 @@
+$base-black                    : #000;
+$base-white                    : #FFF;
+$grey-90                       : tint($base-black, 10%);
+$grey-85                       : tint($base-black, 15%);
+$grey-80                       : tint($base-black, 20%);
+$grey-70                       : tint($base-black, 30%);
+$grey-60                       : tint($base-black, 40%);
+$grey-50                       : tint($base-black, 50%);
+$grey-40                       : tint($base-black, 60%);
+$grey-35                       : tint($base-black, 65%);
+$grey-30                       : tint($base-black, 70%);
+$grey-25                       : tint($base-black, 75%);
+$grey-20                       : tint($base-black, 80%);
+$grey-12                       : tint($base-black, 88%);
+$grey-06                       : tint($base-black, 94%);
+$grey-03                       : tint($base-black, 97%);
+
+// ### Base Colors
+// These are colors can be used on UI elements like borders.
+
+$ui-color: (
+  white                        : $base-white,
+  faint                        : $grey-03,
+  light                        : $grey-06,
+  base                         : $grey-12,
+  medium                       : $grey-40,
+  dark                         : $grey-85,
+  black                        : $base-black,
+
+  brand                        : #0081BA,
+  brand-light                  : #9ACCE2,
+  brand-dark                   : #036,
+  warning                      : #FFD40C,
+  bad-news                     : #C60C0C,
+  good-news                    : #97C70A
+);
+
+// ### Link Colors
+// For anchor links.
+
+$link-color: (
+  base                         : map-get($ui-color, brand),
+  brand                        : map-get($ui-color, brand),
+  brand-light                  : map-get($ui-color, brand-light),
+  bad-news                     : map-get($ui-color, bad-news),
+  white                        : map-get($ui-color, $base-white)
+);
+
+// ### Background colors
+
+$background-color: (
+  base                         : $base-white,
+  white                        : $base-white,
+  faint                        : $grey-03,
+  light                        : $grey-06,
+  muted                        : $grey-35,
+  medium                       : $grey-50,
+  black                        : $base-black,
+
+  brand                        : map-get($ui-color, brand),
+  brand-dark                   : map-get($ui-color, brand-dark),
+  brand-light                  : #F2F7FC,
+  warning                      : lighten(#F7ECB5, 10%),
+  bad-news                     : lighten(#C1272D, 48%),
+  good-news                    : lighten(#90B71C, 45%)
+);
+
+// ### Font Colors
+
+$font-color: (
+  base                         : $grey-85,
+  white                        : $base-white,
+  faint                        : $grey-12,
+  light                        : $grey-25,
+  muted                        : $grey-35,
+  medium                       : $grey-50,
+  dark                         : $grey-85,
+
+  brand                        : map-get($ui-color, brand),
+  brand-dark                   : map-get($ui-color, brand-dark),
+  warning                      : map-get($ui-color, warning),
+  bad-news                     : map-get($ui-color, bad-news),
+  good-news                    : map-get($ui-color, good-news)
+);
+
+// ## Fonts
+
+// ### Font Sizes
+// These defaults can be overriden by custom variables.
+
+$font-size: (
+  base                         : 12px,
+  micro                        : 10px,
+  milli                        : 11px,
+
+  alpha                        : 28px, // h1
+  beta                         : 24px, // h2
+  gamma                        : 20px, // h3
+  delta                        : 16px, // h4
+  epsilon                      : 14px, // h5
+  zeta                         : 12px, // h6
+
+  kilo                         : 40px, // Extra large fonts.
+  mega                         : 50px,
+  giga                         : 65px
+);
+
+// ### Line Heights
+// Specifying variable instead of inside map so it can be used by line-height mixin.
+// These defaults can be overriden by custom variables.
+
+$line-height: (
+  base                         : 1.6,
+  tight                        : 1.2,
+  loose                        : 1.8
+);
+
+// ### Font Family
+
+$font-family: (
+  base                         : unquote("'Gotham SSm A', 'Gotham SSm B', Helvetica, Verdana, sans-serif"),
+  monospace                    : monospace
+);
+
+// ### Font Weights
+
+$font-weight: (
+  light                        : 300,
+  normal                       : 400,
+  bold                         : 500
+);
+
+// ### Font Spacing
+
+$letter-spacing: (
+  loose                        : 1px,
+  tight                        : -1px,
+  extra-tight                  : -2px
+);
+
+// ## UI Elements
+// ### Rounded corners.
+
+$border-radius: (
+  base                         : 2px,
+  big                          : 4px,
+  full                         : 50%
+);
+
+// ### Shadows
+
+$shadow: (
+  base                         : 4px rgba(0, 0, 0, 0.2),
+  light                        : 1px 1px 1px 1px rgba(0, 0, 0, 0.1),
+  big                          : 8px rgba(0, 0, 0, 0.3)
+);
+
+// ### Dialog Widths
+
+$dialog: (
+  width-base                   : 700px,
+  width-narrow                 : 500px,
+  width-wide                   : 900px
+);
+
+// ### Transitions
+
+$transition-duration: (
+  fast                         : 0.1s,
+  base                         : 0.3s,
+  slow                         : 0.5s
+);
+
+// ## Form Variables
+
+$input-focus-border-color      : map-get($ui-color, brand-light);
+
+// ### Buttons
+
+$button: (
+  height-default               : 31px,
+  height-small                 : 24px
+);

@@ -1,0 +1,4 @@
+module.exports = {
+  LOAD_DEFAULT_EVENTS: 'LOAD_DEFAULT_EVENTS',
+  ADD_EVENTS: 'ADD_EVENTS'
+};

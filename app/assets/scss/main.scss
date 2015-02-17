@@ -1,3 +1,58 @@
-body {
-  color: green;
+@import 'bourbon';
+@import 'ui';
+@import 'reset';
+@import 'maps';
+@import 'flexbox';
+
+.calendar {
+  font-family: arial;
+  padding: 20px 10px;
+  &--events {
+    background: map-get($background-color, light);
+    padding: 10px;
+
+    &__item {
+      display: inline-block;
+      background: $base-white;
+      padding: 5px;
+      border-left: 3px solid map-get($ui-color, brand);
+      box-shadow: map-get($shadow, light);
+    }
+  }
+  &--times {
+
+    &__item {
+      margin: 30px 10px;
+      text-align: right;
+      color: map-get($font-color, medium);
+
+      &:first-child {
+         margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:nth-child(odd) {
+        font-weight: map-get($font-weight, bold);
+        .calendar--times__time {
+          font-size: 2em;
+        }
+      }
+
+      &:nth-child(even) {
+        font-size: 1.2em;
+      }
+
+    }
+
+    &__period {
+      margin-left: 5px;
+      text-transform: uppercase;
+      font-size: 1.2em;
+    }
+
+  }
+
 }

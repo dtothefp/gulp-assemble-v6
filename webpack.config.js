@@ -30,16 +30,17 @@ module.exports = function(options) {
     }
   };
 
-  var loaders = {
-    'jsx': ['react-hot', '6to5-loader']
-  };
+  var loaders = [
+    { test: /\.jsx$/, exclude: /node_modules/, loaders: [ 'react-hot-loader', '6to5-loader' ]},
+    { test: /\.js$/, exclude: /node_modules/, loader: '6to5-loader'}
+  ];
 
   var stylesheetLoaders = {
     "scss": [
       "style-loader",
       "css-loader",
       "autoprefixer-loader?browsers=last 2 version",
-      "sass-loader?imagePath=~stylesheets/blocks&includePaths[]=./"
+      "sass-loader?imagePath=~stylesheets/blocks&includePaths[]=" + require('node-bourbon').includePaths
     ]
   };
 
@@ -49,7 +50,7 @@ module.exports = function(options) {
   ];
 
   var prodPlugins = [
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({output: {comments: false}}),
     new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({
       "process.env": {
@@ -60,7 +61,13 @@ module.exports = function(options) {
   ];
 
   if(options.separateStylesheet) {
-    prodPlugins.push(new ExtractTextPlugin("[name].css"));
+    stylesheetLoaders = [
+      { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!autoprefixer?browsers=last 2 version!sass?imagePath=~stylesheets/blocks&includePaths[]=' + require('node-bourbon').includePaths) }
+    ];
+    prodPlugins.push(new ExtractTextPlugin("main.css", {
+        allChunks: true
+    }));
   }
 
   var webpackConfig =  {
@@ -68,17 +75,17 @@ module.exports = function(options) {
     entry: entry,
     output: {
       path: __dirname + (isDev ? '' : '/build') + '/assets/',
-      filename: isDev ? 'bundle.js' : '[name].min.js',
+      filename: isDev ? 'bundle.js' : '[name].js',
       publicPath: '/assets/'
     },
-    plugins: isDev ? devPlugins : prodPlugins,
+    plugins: (isDev ? devPlugins : prodPlugins),
     resolve: {
       extensions: ['', '.js', '.jsx', '.scss'],
       root: path.join(__dirname, "app")
     },
     module: {
       preLoaders: loadersByExtension(preLoaders),
-      loaders: loadersByExtension(loaders).concat(loadersByExtension(stylesheetLoaders))
+      loaders: loaders.concat(loadersByExtension(stylesheetLoaders))
     },
     jshint: {
         emitErrors: true,
