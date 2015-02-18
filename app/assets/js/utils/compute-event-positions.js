@@ -19,49 +19,34 @@ module.exports = function computeEventPositions(events) {
     }
   });
 
+  var sorted = eventBoard.sort(function(a,b) {
+    return b.length - a.length;
+  });
+
   var isIncreasing = true;
   var lastNeighbors;
   var groups = [];
   var lastEventList = [];
-  eventBoard.forEach((eventList, index) => {
+  sorted.forEach((eventList, index) => {
     var numberOfEvents = eventList.length;
     var numberOfLastEvents = lastEventList.length;
-    var W = 100;
-    var clonedEvents = [];
-
     var diff = _.difference(eventList, lastEventList);
-    //event list is bigger -- automatically store
-    //event list is smaller -- all id's are in previous list -- splice out and don't store
-    //event list is same length but some id's have changed 
-    // else event list is same length and no id's have changed -- do nothingh
+
     if(diff.length > 0) {
-      if(numberOfEvents < numberOfLastEvents) {
-        groups.push(diff);
-      } else if(numberOfEvents === numberOfLastEvents) {
-        groups.push(diff);
-      } else if(numberOfEvents > numberOfLastEvents) {
-        groups.push(eventList);
-      }
-    } else {
-      return false;
+      groups.push(eventList);
     }
 
     lastEventList = eventList;
   });
 
-  //get the arrays sorted by length descending
-  var sorted = groups.sort(function(a, b) {
-    return b.length - a.length;
-  });
-
   //loop through the nested array
-  for(let i=0; i < sorted.length; i+=1) {
-    let comparisonArr = sorted[i];
+  for(let i=0; i < groups.length; i+=1) {
+    let comparisonArr = groups[i];
     let W = 100 / comparisonArr.length;
 
     //loop through the rest of the array
-    for(let k=i+1; k < sorted.length; k+=1) {
-      let nextArr = sorted[k];
+    for(let k=i+1; k < groups.length; k+=1) {
+      let nextArr = groups[k];
 
       //compare each id in longest array to next longest and so on
       for(let j=0; j < comparisonArr.length; j+=1) {
@@ -76,12 +61,34 @@ module.exports = function computeEventPositions(events) {
 
     }//end k for loop
 
-    comparisonArr.forEach(function(id, index) {
-      var event = _.filter(events, {id: id})[0];
-      event.W = W;
-      event.R = index;
-    });
+    //comparisonArr.forEach(function(id, index) {
+      //var event = _.filter(events, {id: id})[0];
+      //event.W = W;
+      //event.R = index;
+    //});
 
   }//end i for loop
+
+  var filtered = groups.filter(function(arr) {
+    if(arr.length > 0) {
+      return arr;
+    }
+  });
+
+  var nestedEvents = [];
+  filtered.forEach(function(eventList) {
+    let W = 100 / eventList.length;
+
+    var map = eventList.map(function(eventId, index) {
+      var event = _.filter(events, {id: eventId})[0];
+      event.W = W;
+      event.R = index;
+      return event;
+    });
+
+    nestedEvents.push(map);
+
+  });
+
   debugger;
 };
