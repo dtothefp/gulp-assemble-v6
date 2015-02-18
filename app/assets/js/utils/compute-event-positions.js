@@ -40,6 +40,7 @@ module.exports = function computeEventPositions(events) {
   });
 
   //loop through the nested array
+  var finalGroup = [];
   for(let i=0; i < groups.length; i+=1) {
     let comparisonArr = groups[i];
     let W = 100 / comparisonArr.length;
@@ -55,8 +56,10 @@ module.exports = function computeEventPositions(events) {
         let comparisonId = comparisonArr[j];
         let matchingIndex = nextArr.indexOf(comparisonId);
 
-        if( matchingIndex > -1 ) {
-          nextArr.splice(matchingIndex, 1);
+        if( matchingIndex > -1 && k === 1) {
+          //nextArr.splice(matchingIndex, 1);
+          finalGroup.push( comparisonArr.concat(nextArr) );
+          break;
         }
 
       }//end j for loop
