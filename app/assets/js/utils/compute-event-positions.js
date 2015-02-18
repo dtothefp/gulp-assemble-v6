@@ -49,6 +49,8 @@ module.exports = function computeEventPositions(events) {
       let nextArr = groups[k];
 
       //compare each id in longest array to next longest and so on
+      //if the index in the smaller group is not in the larger group but is in a group that contains larger group members
+      //must incorporate it into the larger group and remove it from the smaller group
       for(let j=0; j < comparisonArr.length; j+=1) {
         let comparisonId = comparisonArr[j];
         let matchingIndex = nextArr.indexOf(comparisonId);
