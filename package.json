@@ -51,6 +51,7 @@
     "gulp-util": "^3.0.3",
     "handlebars": "^3.0.0",
     "handlebars-helpers": "^0.5.8",
+    "immutable": "^3.6.2",
     "js-yaml": "^3.2.6",
     "jshint-stylish": "^1.0.0",
     "jsx-loader": "^0.12.2",
