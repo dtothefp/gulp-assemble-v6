@@ -15,7 +15,7 @@ var EventStore = assign(EventEmitter.prototype, {
     this.on(CHANGE_EVENT, callback);
   },
   getEvents() {
-    return _events ? _events : defualtEvents;
+    return true ? _events : defualtEvents;
   },
   dispatcherIndex: AppDispatcher.register((payload) => {
     var action = payload.action;

@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var React = require('react');
 var EventStore = require('./stores/events-store');
 
@@ -17,9 +18,25 @@ var CalendarEvents = React.createClass({
   _onChange() {
     this.setState(storedEvents());
   },
+  _assignWidth() {
+    //var map = [];
+    //this.state.forEach((column, i) => {
+      //var hor = [];
+      //hor.push(column)
+    //});
+  },
   render() {
-    var events = this.state.events.map( (event, index) => {
-      console.log(event, event.W);
+
+    this.state.events.forEach( (column, index) => {
+      column.forEach((event, pos) => {
+        event.W = 100 / this.state.events.length;
+        event.R = index;
+        event.V = pos;
+      });
+    });
+
+    var events = _.flatten(this.state.events).map((event, i) => {
+      console.log(event);
       var divStyle = {
         top: event.start,
         left: event.R > 0 ? ( event.R * event.W ) + '%' : 0,
