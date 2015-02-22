@@ -1,8 +1,7 @@
 module.exports = function(events) {
   var eventBoard = [];
   var BOARD_HEIGHT = 720;
-
-  var sortedEvents = events.sort((eventA, eventB) => eventA - eventB);
+  var sortedEvents = events.sort((eventA, eventB) => eventA.start - eventB.start);
 
   var compareEvents = function compareEvents(events) {
 
@@ -26,6 +25,7 @@ module.exports = function(events) {
       var cell = column[ column.length -1 ];
       var neededSpace = cell.end + currentInterval;
       //need to adjust this logic to search through the rest of the array for events that will fit underneath if the next one won't
+      //can loop through backwards through the biggest values for this
       //only should compare the last item in each column
       //check if there is enough space for the event and if it starts after the one above finishes
       //need to calculate the width and horizontal position somehow
@@ -45,6 +45,8 @@ module.exports = function(events) {
 
   };
 
-  return compareEvents(sortedEvents);
+  var compared =  compareEvents(sortedEvents);
+
+  return compared;
 
 };

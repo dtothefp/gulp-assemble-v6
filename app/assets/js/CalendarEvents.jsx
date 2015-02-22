@@ -26,17 +26,28 @@ var CalendarEvents = React.createClass({
     //});
   },
   render() {
+    //this.state.events.forEach( (column, index) => {
+      //column.forEach((event, pos) => {
+        //event.W = 100 / this.state.events.length;
+        //event.R = index;
+        //event.V = pos;
+      //});
+    //});
 
-    this.state.events.forEach( (column, index) => {
-      column.forEach((event, pos) => {
-        event.W = 100 / this.state.events.length;
-        event.R = index;
-        event.V = pos;
-      });
-    });
-
-    var events = _.flatten(this.state.events).map((event, i) => {
-      console.log(event);
+    //var events = _.flatten(this.state.events).map((event, i) => {
+      //var divStyle = {
+        //top: event.start,
+        //left: event.R > 0 ? ( event.R * event.W ) + '%' : 0,
+        //width: event.W + '%',
+        //height: ( event.end - event.start ) + 'px'
+      //};
+      //return (<div className="calendar--events__item" style={divStyle}>
+                //<p>Start: {event.start} - W: {event.W}%</p>
+                //<p>End: {event.end} - R: %</p>
+              //</div>
+      //);
+    //});
+    var events = this.state.events.map((event) => {
       var divStyle = {
         top: event.start,
         left: event.R > 0 ? ( event.R * event.W ) + '%' : 0,
@@ -45,7 +56,9 @@ var CalendarEvents = React.createClass({
       };
       return (<div className="calendar--events__item" style={divStyle}>
                 <p>Start: {event.start} - W: {event.W}%</p>
-                <p>End: {event.end} - R: %</p>
+                <p>End: {event.end} - R: {event.R * event.W}%</p>
+                <p>Neighbors: {event.MAX}</p>
+                <p>ID: {event.id}</p>
               </div>
       );
     });
