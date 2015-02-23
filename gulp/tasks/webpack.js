@@ -22,7 +22,8 @@ var runWebpackTask = function(env, callback) {
    return new WebpackDevServer(webpack(config), {
       contentBase: path.join(process.cwd(), 'build'),
       publicPath: config.output.publicPath,
-      hot: true
+      hot: true,
+      stats: { colors: true }
     }).listen(8000, 'localhost', function (err, result) {
         if(err) {
           throw new gutil.PluginError("webpack-dev-server", err);

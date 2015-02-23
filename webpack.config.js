@@ -27,6 +27,10 @@ module.exports = function(options) {
     'jsx': {
       exclude: /node_modules/,
       loader: 'jsxhint-loader'
+    },
+    'js': {
+      exclude: /node_modules/,
+      loader: 'jshint-loader'
     }
   };
 

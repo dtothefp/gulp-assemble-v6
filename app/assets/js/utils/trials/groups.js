@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 module.exports = function(events) {
   var sortedEvents = events.sort((eventA, eventB) => eventA.start - eventB.start);
 
@@ -11,14 +13,14 @@ module.exports = function(events) {
         let neighbor = events[i];
 
         if(
-          event.start >= neighbor.start && event.start <= neighbor.end
-          || event.end >= neighbor.start && event.start <= neighbor.end
+          event.start >= neighbor.start && event.start <= neighbor.end  // jshint ignore:line
+          || event.end >= neighbor.start && event.start <= neighbor.end // jshint ignore:line
         ) {
           event.neighbors.push(neighbor);
         }
 
       }
-    })
+    });
   };
 
   getNeighbors(sortedEvents);
@@ -92,7 +94,7 @@ module.exports = function(events) {
       var filtered = sortedById.filter((currentEvent) => currentEvent.id !== event.id );
       event.neighbors = filtered;
 
-      calculateHorPos(event, index)
+      calculateHorPos(event, index);
     });
   };
 

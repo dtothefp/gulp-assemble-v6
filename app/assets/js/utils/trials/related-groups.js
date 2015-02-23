@@ -34,7 +34,7 @@ module.exports = function(events) {
             if(!recursed && typeof recursed === 'undefined') {
               //use the last item in the last group as reference for horizontal positioning
               //and push the even into the last group array
-              event.R = lastGroup[lastGroup.length - 1].R + 1;
+              event.R = _.max(lastGroup, 'R').R + 1;
               map[lastMapIndex].push(event);
             } else {
               //if previous neighbors exist push the current event into the neighbors array
@@ -90,12 +90,34 @@ module.exports = function(events) {
       return suitableNeighbor;
     }
 
+    recurseNeighbors(event, compare) {
+      var relatedEvent;
+      for(let i=0; i < compare.lenght; i+=1) {
+
+        if(event.start > compare.end && !compare.neighbors && typeof compare.neighbors === 'undefined') {
+          relatedEvent = compare;
+          break;
+        } else if(event.start > compare.end && compare.neighbors.length > 0) {
+          relatedEvent = this.recurseNeighbors(event, compare.neighbors);
+          break;
+        }
+      }
+
+      return relatedEvent;
+    }
+
     filterGroups(event, lastGroup) {
       //if this is populated we must start a new group
       //it will contain all events from the past group that it starts later than
       //may potentially be some members of the last group that it doesn't start later than
       var filtered = lastGroup.filter((pastEvent) => {
         if(event.start > pastEvent.end) {
+          //if(pastEvent.neighbors) {
+            //let recursed = this.recurseNeighbors(event, pastEvent.neighbors);
+            //return recursed;
+          //} else {
+            //return pastEvent;
+          //}
           return pastEvent;
         }
       });
@@ -120,9 +142,8 @@ module.exports = function(events) {
         });
       });
     }
-  };
+  }
 
   var grouper = new Groups(events);
-
   return grouper.events;
 };
