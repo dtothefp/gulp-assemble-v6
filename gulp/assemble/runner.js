@@ -11,13 +11,11 @@ module.exports = function(callback) {
   var done = callback;
 
   var assemble = require('assemble');
-  var mergePageData = require('./middleware/merge-page-data');
   var mergeLayoutContext = require('./middleware/merge-layout-context');
-  var push = require('assemble-push')(assemble);
   var Handlebars = require('handlebars');
 
-  var config = require('./config/_assemble'); // old assemble config
-  var options = config.options; // global options
+  var config = require('./config/_assemble');
+  var options = config.options;
   helpers.register(Handlebars, options.helpers);
 
   var renameKey = assemble.option('renameKey');
@@ -30,7 +28,7 @@ module.exports = function(callback) {
 
   assemble.layouts([options.layouts]);
   assemble.partials(options.partials);
-   assemble.helpers(options.helpers);
+  assemble.helpers(options.helpers);
 
   function normalizeSrc (cwd, sources) {
     sources = Array.isArray(sources) ? sources : [sources];
@@ -42,7 +40,6 @@ module.exports = function(callback) {
     });
   }
 
-  assemble.onLoad(/\.hbs/, mergePageData(assemble));
   assemble.preRender(/\.hbs/, mergeLayoutContext(assemble));
 
   assemble.option('renameKey', renameKeys.noExtPath);
@@ -52,15 +49,12 @@ module.exports = function(callback) {
 
     var files = config.pages.files[0];
     return assemble.src(normalizeSrc(files.cwd, files.src))
-      .pipe(ext())
-      .pipe(assemble.dest(files.dest.substr(1)))
-      //.on('data', function (file) {
-         //console.log(file.path, 'rendered');
-      //})
-      .on('end', function () {
-        var end = process.hrtime(start);
-        console.log('finished rendering pages', end);
-      });
+    .pipe(ext())
+    .pipe(assemble.dest(files.dest.substr(1)))
+    .on('end', function () {
+      var end = process.hrtime(start);
+      console.log('finished rendering pages', end);
+    });
   });
 
   assemble.run(['pages'], function (err) {

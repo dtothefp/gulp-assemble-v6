@@ -35,8 +35,8 @@ module.exports = function(options) {
   };
 
   var loaders = [
-    { test: /\.jsx$/, exclude: /node_modules/, loaders: [ 'react-hot-loader', '6to5-loader' ]},
-    { test: /\.js$/, exclude: /node_modules/, loader: '6to5-loader'}
+    { test: /\.jsx$/, exclude: /node_modules/, loaders: [ 'react-hot-loader', 'babel-loader?experimental&optional=runtime' ]},
+    { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader?experimental&optional=runtime'}
   ];
 
   var stylesheetLoaders = {
