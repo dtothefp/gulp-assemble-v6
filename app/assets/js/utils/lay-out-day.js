@@ -7,6 +7,5 @@ module.exports = function layOutDay(events) {
   if(events) {
     eventBoard = computeEventPositions(events || defaultEvents);
   }
-  console.log(eventBoard);
   return events ? AppActions.updateEvents(eventBoard) : AppActions.defaultEvents();
 };

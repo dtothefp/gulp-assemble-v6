@@ -3,8 +3,9 @@ var horizontal = require('./trials/horizontal.js');
 var vertical = require('./trials/vertical.js');
 var groups = require('./trials/groups.js');
 var relatedGroups = require('./trials/related-groups.js');
+var relatedGroups2 = require('./trials/related-groups-2.js');
 
 module.exports = function computeEventPositions(events) {
   //horizontal(events);
-  return relatedGroups(events);
+  return relatedGroups2(events);
 };
