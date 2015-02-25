@@ -2,10 +2,8 @@ var assign = require('object-assign');
 var EventEmitter = require('events').EventEmitter;
 var constants = require('../constants');
 var AppDispatcher = require('../dispatchers/app-dispatcher');
-
 var CHANGE_EVENT = 'change';
 var _events;
-var defaultEvents = require('../utils/default-events');
 
 var EventStore = assign(EventEmitter.prototype, {
   emitChange() {
@@ -15,7 +13,7 @@ var EventStore = assign(EventEmitter.prototype, {
     this.on(CHANGE_EVENT, callback);
   },
   getEvents() {
-    return true ? _events : defualtEvents;
+    return _events;
   },
   dispatcherIndex: AppDispatcher.register((payload) => {
     var action = payload.action;
@@ -25,10 +23,10 @@ var EventStore = assign(EventEmitter.prototype, {
         _events = action.events;
         break;
       case constants.LOAD_DEFAULT_EVENTS:
-        _events = defaultEvents;
+        _events = defaultEvents.events;
         break;
       default:
-        _events = defaultEvents;
+        _events = defaultEvents.events;
         break;
     }
 

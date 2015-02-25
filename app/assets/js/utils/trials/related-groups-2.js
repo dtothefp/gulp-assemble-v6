@@ -76,7 +76,7 @@ module.exports = function(events) {
               //if the event start is not greater than the end for any events in the last group
               //use the last item in the last group as reference for horizontal positioning
               //and push the even into the last group array
-              event.R = lastGroup[lastGroup.length - 1].R + 1;
+              event.R = _.max(lastGroup, 'R').R + 1;
               map[lastMapIndex].push(event);
             }
           }

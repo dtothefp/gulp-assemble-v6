@@ -6,16 +6,13 @@
     <title>{{title}} | {{site.title}}</title>
 
     <!-- Optimizely Stylesheet -->
-    <link rel="stylesheet" href="{{assets}}/main.css">
+    <link rel="stylesheet" href="assets/main.css">
   </head>
   <body>
 
     {% body %}
-    
-    <script src="/assets/bundle.js"></script>
-    
-    {{#if this.page_script}}
-    <script src="{{assets}}/js/{{this.page_script}}" defer></script>
-    {{/if}}
+
+    <script src="assets/bundle.js"></script>
+
   </body>
 </html>

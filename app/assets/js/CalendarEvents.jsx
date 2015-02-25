@@ -26,11 +26,11 @@ var CalendarEvents = React.createClass({
         width: event.W + '%',
         height: ( event.end - event.start ) + 'px'
       };
-      return (<div className="calendar--events__item" style={divStyle}>
-                <p>Start: {event.start}</p>
-                <p>End: {event.end}</p>
-                <p>ID: {event.id}</p>
-              </div>
+      return (
+        <div className="calendar--events__item" style={divStyle}>
+          <p>Sample Item</p>
+          <p>Sample Location</p>
+        </div>
       );
     });
     return (
